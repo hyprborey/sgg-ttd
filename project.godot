@@ -14,3 +14,16 @@ config/name="sgg-ttd"
 run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[global_group]
+
+enemies=""
+
+[layer_names]
+
+2d_physics/layer_2="Enemy hitboxes"
+2d_physics/layer_3="Enemy range"
+2d_physics/layer_4="Enemy bullet"
+2d_physics/layer_5="Tower hitbox"
+2d_physics/layer_6="Tower range"
+2d_physics/layer_7="Tower bullet"

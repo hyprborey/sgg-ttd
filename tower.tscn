@@ -1,22 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3svoov0bkby8"]
+[gd_scene load_steps=5 format=3 uid="uid://c3svoov0bkby8"]
 
 [ext_resource type="Script" path="res://tower.gd" id="1_ffamq"]
 [ext_resource type="Texture2D" uid="uid://de5fn54h1loro" path="res://icon.svg" id="2_gv1ux"]
+[ext_resource type="PackedScene" uid="uid://d3dq44actw2xg" path="res://bullet.tscn" id="2_he50o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_se12y"]
 radius = 200.0
 
 [node name="Tower" type="Node2D"]
 script = ExtResource("1_ffamq")
+attack_range = 300.0
+BulletScene = ExtResource("2_he50o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_gv1ux")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TowerRange" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerRange"]
 shape = SubResource("CircleShape2D_se12y")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="TowerRange" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="TowerRange" to="." method="_on_area_2d_area_exited"]
