@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bks2exkhu56wu"]
+
+[ext_resource type="Texture2D" uid="uid://de5fn54h1loro" path="res://assets/icon.svg" id="1_m7hy1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ttvid"]
+
+[node name="Objective" type="Node2D"]
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_m7hy1")
+
+[node name="TriggerBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerBox"]
+shape = SubResource("CircleShape2D_ttvid")

@@ -11,9 +11,20 @@ config_version=5
 [application]
 
 config/name="sgg-ttd"
-run/main_scene="res://world.tscn"
+run/main_scene="res://levels/debug_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "red",
+"res://levels/": "orange",
+"res://objects/": "orange",
+"res://old/": "gray",
+"res://resources/": "yellow",
+"res://util/": "purple"
+}
 
 [global_group]
 

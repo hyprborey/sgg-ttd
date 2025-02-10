@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg4vy5xqqnoil"]
+
+[ext_resource type="Script" path="res://objects/scripts/enemy.gd" id="1_2vtld"]
+[ext_resource type="Script" path="res://util/classes/enemy_stats.gd" id="2_0f3j7"]
+[ext_resource type="Texture2D" uid="uid://bs3fk25lxdcym" path="res://assets/enemy_normal.png" id="3_gi3ie"]
+
+[sub_resource type="Resource" id="Resource_kwejo"]
+script = ExtResource("2_0f3j7")
+name = ""
+max_health = 10
+speed = 10
+armor = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wno71"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_2vtld")
+stats = SubResource("Resource_kwejo")
+
+[node name="Texture" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_gi3ie")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_wno71")

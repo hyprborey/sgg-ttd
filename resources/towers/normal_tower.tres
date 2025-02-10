@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TowerStats" load_steps=5 format=3 uid="uid://xbefas6ehsyv"]
+
+[ext_resource type="Texture2D" uid="uid://k6q5i4qjpi7s" path="res://assets/tower_universal_base.png" id="1_17vh5"]
+[ext_resource type="Resource" uid="uid://l0e7b7kni4hf" path="res://resources/towers/normal_tower_bullet.tres" id="2_1anlo"]
+[ext_resource type="Texture2D" uid="uid://cg6y4ilwu6qkp" path="res://assets/tower_universal_gun.png" id="3_ll2vj"]
+[ext_resource type="Script" path="res://util/classes/tower_stats.gd" id="4_d0wxu"]
+
+[resource]
+script = ExtResource("4_d0wxu")
+radius = 400
+base_texture = ExtResource("1_17vh5")
+gun_texture = ExtResource("3_ll2vj")
+bullet = ExtResource("2_1anlo")

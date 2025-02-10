@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://vtfshpcj1iqc"]
+
+[ext_resource type="Script" path="res://objects/scripts/tower.gd" id="1_m738e"]
+[ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="2_8wab0"]
+[ext_resource type="Texture2D" uid="uid://k6q5i4qjpi7s" path="res://assets/tower_universal_base.png" id="3_v23uw"]
+[ext_resource type="Texture2D" uid="uid://cg6y4ilwu6qkp" path="res://assets/tower_universal_gun.png" id="4_0u8d7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83gr0"]
+radius = 200.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_m738e")
+stats = ExtResource("2_8wab0")
+
+[node name="Base" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_v23uw")
+
+[node name="Gun" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_0u8d7")
+offset = Vector2(0, -22)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="Gun"]
+position = Vector2(0, -45)
+
+[node name="RangeBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeBox"]
+shape = SubResource("CircleShape2D_83gr0")
