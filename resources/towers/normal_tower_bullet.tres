@@ -10,5 +10,5 @@ size = Vector2(10, 10)
 script = ExtResource("1_6xay3")
 texture = ExtResource("2_0l5qb")
 hitbox = SubResource("RectangleShape2D_lw5a7")
-speed = 100
-damage = 10
+speed = 300
+damage = 1

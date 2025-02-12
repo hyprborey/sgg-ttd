@@ -7,21 +7,27 @@
 
 [sub_resource type="Curve2D" id="Curve2D_hktnm"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 52, 64, 0, 0, 0, 0, 1034, 57, 0, 0, 0, 0, 1034, 494, 0, 0, 0, 0, 55, 494, 0, 0, 0, 0, 52, 270, 0, 0, 0, 0, 820, 266)
+"points": PackedVector2Array(0, 0, 0, 0, 52, 64, -146.206, -1.05946, 146.206, 1.05946, 1034, 57, 135.611, -1.05946, -135.611, 1.05946, 1034, 494, 97.4706, 1.05946, -97.4706, -1.05946, 55, 494, -80.5192, -1.05946, 80.5192, 1.05946, 52, 270, 0, 0, 0, 0, 820, 266)
 }
 point_count = 6
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_8njmn")
 
-[node name="Bullets" type="Node2D" parent="."]
-
 [node name="Towers" type="Node2D" parent="."]
 
 [node name="Tower" parent="Towers" instance=ExtResource("4_hts6u")]
 position = Vector2(354, 135)
 
+[node name="Tower2" parent="Towers" instance=ExtResource("4_hts6u")]
+position = Vector2(914, 153)
+
+[node name="Tower3" parent="Towers" instance=ExtResource("4_hts6u")]
+position = Vector2(986, 312)
+
 [node name="Enemies" type="Path2D" parent="."]
+position = Vector2(31, -5)
+scale = Vector2(0.966827, 1)
 curve = SubResource("Curve2D_hktnm")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies"]
@@ -31,6 +37,30 @@ rotates = false
 loop = false
 
 [node name="Enemy" parent="Enemies/PathFollow2D" instance=ExtResource("1_n33m2")]
+position = Vector2(0.985722, 2.00708)
+rotation = 0.00712819
+stats = ExtResource("2_lbt25")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Enemies"]
+position = Vector2(71.9757, 63.8093)
+rotation = -0.00712819
+progress = 20.0
+rotates = false
+loop = false
+
+[node name="Enemy" parent="Enemies/PathFollow2D2" instance=ExtResource("1_n33m2")]
+position = Vector2(0.985722, 2.00708)
+rotation = 0.00712819
+stats = ExtResource("2_lbt25")
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Enemies"]
+position = Vector2(102.054, 63.5253)
+rotation = -0.00712819
+progress = 50.0
+rotates = false
+loop = false
+
+[node name="Enemy" parent="Enemies/PathFollow2D3" instance=ExtResource("1_n33m2")]
 position = Vector2(0.985722, 2.00708)
 rotation = 0.00712819
 stats = ExtResource("2_lbt25")
