@@ -19,7 +19,7 @@ script = ExtResource("1_8njmn")
 [node name="Towers" type="Node2D" parent="."]
 
 [node name="Tower" parent="Towers" instance=ExtResource("4_hts6u")]
-position = Vector2(951, 144)
+position = Vector2(354, 135)
 
 [node name="Enemies" type="Path2D" parent="."]
 curve = SubResource("Curve2D_hktnm")

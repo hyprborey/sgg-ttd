@@ -13,7 +13,7 @@ armor = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wno71"]
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_2vtld")
 stats = SubResource("Resource_kwejo")
 
@@ -21,9 +21,9 @@ stats = SubResource("Resource_kwejo")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_gi3ie")
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_wno71")

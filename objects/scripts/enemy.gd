@@ -33,3 +33,6 @@ func _process(delta: float) -> void:
 	
 	if parent is PathFollow2D:
 		parent.progress += speed * delta
+
+func hit(damage: int):
+	pass

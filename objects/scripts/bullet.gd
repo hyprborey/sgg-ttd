@@ -1,11 +1,23 @@
-extends Node2D
+extends CharacterBody2D
+
+@export var stats: BulletStats
+@export var SPEED = 500
+
+var direction: float
+var zdex: int
+var damage: int
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	z_index = zdex
+
+func _physics_process(delta):
+	velocity = Vector2(0, -SPEED).rotated(direction)
+	move_and_slide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_hibox_area_entered(area: Area2D) -> void:
+	print("Попадание!")
+	var enemy = area.get_parent()
+	enemy.hit(damage)
+	queue_free()

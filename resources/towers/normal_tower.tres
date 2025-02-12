@@ -7,7 +7,8 @@
 
 [resource]
 script = ExtResource("4_d0wxu")
-radius = 400
+attack_range = 200
+attack_rate = 10.0
 base_texture = ExtResource("1_17vh5")
 gun_texture = ExtResource("3_ll2vj")
-bullet = ExtResource("2_1anlo")
+bullet_stats = ExtResource("2_1anlo")

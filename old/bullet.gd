@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 500
 
-var dir: float
+var direction: float
 var spawnPos: Vector2
 var spawnRot: float
 var zdex: int
@@ -15,7 +15,7 @@ func _ready():
 	z_index = zdex
 
 func _physics_process(delta):
-	velocity = Vector2(0, -SPEED).rotated(dir)
+	velocity = Vector2(0, -SPEED).rotated(direction)
 	move_and_slide()
 
 

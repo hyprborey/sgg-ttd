@@ -1,17 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cv0bylta4uiuw"]
+[gd_scene load_steps=5 format=3 uid="uid://cv0bylta4uiuw"]
 
 [ext_resource type="Script" path="res://objects/scripts/bullet.gd" id="1_2kutl"]
+[ext_resource type="Resource" uid="uid://l0e7b7kni4hf" path="res://resources/towers/normal_tower_bullet.tres" id="2_mpe63"]
+[ext_resource type="Texture2D" uid="uid://de5fn54h1loro" path="res://assets/icon.svg" id="3_5iesf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vw8w1"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2soem"]
-size = Vector2(10, 10)
-
 [node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_2kutl")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vw8w1")
+stats = ExtResource("2_mpe63")
 
 [node name="Texture" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_2soem")
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("3_5iesf")
+
+[node name="Hibox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hibox"]
+shape = SubResource("RectangleShape2D_vw8w1")
+
+[connection signal="area_entered" from="Hibox" to="." method="_on_hibox_area_entered"]
