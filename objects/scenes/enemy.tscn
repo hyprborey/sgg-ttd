@@ -13,13 +13,14 @@ speed = 50
 armor = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wno71"]
+radius = 7.0
 
 [node name="Enemy" type="Node2D" groups=["enemies"]]
 script = ExtResource("1_2vtld")
 stats = SubResource("Resource_kwejo")
 
 [node name="Texture" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.33, 0.33)
 texture = ExtResource("3_gi3ie")
 
 [node name="Hurtbox" type="Area2D" parent="."]

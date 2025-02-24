@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelStats" load_steps=6 format=3 uid="uid://dxkq8l548hgs6"]
+
+[ext_resource type="Script" path="res://util/classes/level_stats.gd" id="1_eggs5"]
+[ext_resource type="Script" path="res://util/classes/wave.gd" id="2_vl8l6"]
+[ext_resource type="Resource" uid="uid://b8sa43u0m4n2q" path="res://resources/enemies/normal_enemy.tres" id="3_4fweb"]
+
+[sub_resource type="Resource" id="Resource_m1xdb"]
+script = ExtResource("2_vl8l6")
+enemy_stats = ExtResource("3_4fweb")
+enemy_amount = 5
+time_before_wave = 5
+
+[sub_resource type="Resource" id="Resource_a7kgg"]
+script = ExtResource("2_vl8l6")
+enemy_stats = ExtResource("3_4fweb")
+enemy_amount = 10
+time_before_wave = 10
+
+[resource]
+script = ExtResource("1_eggs5")
+waves = Array[ExtResource("2_vl8l6")]([SubResource("Resource_m1xdb"), SubResource("Resource_a7kgg")])

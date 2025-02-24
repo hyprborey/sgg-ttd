@@ -1,14 +1,12 @@
-[gd_resource type="Resource" script_class="BulletStats" load_steps=4 format=3 uid="uid://l0e7b7kni4hf"]
+[gd_resource type="Resource" script_class="BulletStats" load_steps=3 format=3 uid="uid://l0e7b7kni4hf"]
 
 [ext_resource type="Script" path="res://util/classes/bullet_stats.gd" id="1_6xay3"]
-[ext_resource type="Texture2D" uid="uid://de5fn54h1loro" path="res://assets/icon.svg" id="2_0l5qb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lw5a7"]
-size = Vector2(10, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_sra1m"]
+radius = 5.0
 
 [resource]
 script = ExtResource("1_6xay3")
-texture = ExtResource("2_0l5qb")
-hitbox = SubResource("RectangleShape2D_lw5a7")
+hitbox = SubResource("CircleShape2D_sra1m")
 speed = 300
 damage = 1
