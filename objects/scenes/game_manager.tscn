@@ -1,23 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfmr1nnmdm2hv"]
+[gd_scene load_steps=11 format=3 uid="uid://bfmr1nnmdm2hv"]
 
 [ext_resource type="Script" path="res://objects/scripts/game_manager.gd" id="1_lrjbb"]
 [ext_resource type="Resource" uid="uid://dxkq8l548hgs6" path="res://resources/levels/debug_level.tres" id="2_rgexu"]
 [ext_resource type="PackedScene" uid="uid://vtfshpcj1iqc" path="res://objects/scenes/tower.tscn" id="3_knsrk"]
 [ext_resource type="Script" path="res://objects/scripts/world_manager.gd" id="3_slmu2"]
-[ext_resource type="Texture2D" uid="uid://dstr6yerdnxe5" path="res://assets/tower_normal.png" id="6_7ydmk"]
+[ext_resource type="Script" path="res://objects/scripts/game_ui.gd" id="6_1bf85"]
 [ext_resource type="Script" path="res://objects/scripts/enemy_wave_controller.gd" id="6_qpery"]
+[ext_resource type="PackedScene" uid="uid://cchduoh062nhv" path="res://objects/scenes/buildmenu_tower_button.tscn" id="7_72ge4"]
+[ext_resource type="Script" path="res://util/classes/tower_stats.gd" id="7_cq6ir"]
+[ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="8_dljr2"]
 
 [sub_resource type="Curve2D" id="Curve2D_hktnm"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -68, 59, 0, 0, 0, 0, 1034, 57, 0, 0, 0, 0, 1034, 494, 0, 0, 0, 0, 55, 494, 0, 0, 0, 0, 52, 270, 0, 0, 0, 0, 820, 266)
 }
 point_count = 6
-
-[sub_resource type="LabelSettings" id="LabelSettings_v7ujn"]
-font_size = 8
-
-[sub_resource type="LabelSettings" id="LabelSettings_3x3nm"]
-font_size = 8
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_lrjbb")
@@ -53,8 +50,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("6_1bf85")
+towers = Array[ExtResource("7_cq6ir")]([ExtResource("8_dljr2")])
 
 [node name="BuildMenu" type="Control" parent="CanvasLayer/UI"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.31
+offset_top = 43.92
+offset_right = -12.3101
+offset_bottom = -16.13
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/BuildMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,62 +75,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/BuildMenu"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -133.0
-offset_top = -277.0
-offset_right = -7.0
-offset_bottom = 73.0
-grow_horizontal = 0
-grow_vertical = 2
-
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/BuildMenu/PanelContainer"]
 layout_mode = 2
 columns = 4
 
-[node name="Control" type="VBoxContainer" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer"]
-custom_minimum_size = Vector2(70, 70)
+[node name="Button" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer" instance=ExtResource("7_72ge4")]
 layout_mode = 2
-
-[node name="Control" type="Control" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer/Control"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer/Control/Control"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(15, 15)
-texture = ExtResource("6_7ydmk")
-expand_mode = 4
-
-[node name="Name" type="Label" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer/Control"]
-layout_mode = 2
-text = "Basic Tower"
-label_settings = SubResource("LabelSettings_v7ujn")
-horizontal_alignment = 1
-
-[node name="Price" type="Label" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer/Control"]
-layout_mode = 2
-text = "60 BUCKS"
-label_settings = SubResource("LabelSettings_3x3nm")
-horizontal_alignment = 1
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/UI"]
 visible = false
@@ -135,4 +98,7 @@ offset_top = 5.0
 offset_right = -5.0
 offset_bottom = 36.0
 grow_horizontal = 0
+toggle_mode = true
 text = "Build Menu"
+
+[connection signal="toggled" from="CanvasLayer/UI/BuildMenuButton" to="CanvasLayer/UI" method="_on_build_menu_button_toggled"]

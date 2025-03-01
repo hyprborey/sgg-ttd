@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cchduoh062nhv"]
+
+[ext_resource type="Texture2D" uid="uid://dstr6yerdnxe5" path="res://assets/tower_normal.png" id="1_fi0cy"]
+[ext_resource type="Script" path="res://objects/scripts/buildmenu_tower_button.gd" id="1_vkr5y"]
+[ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="2_3jwps"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v7ujn"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_3x3nm"]
+font_size = 8
+
+[node name="TowerButton" type="Button"]
+custom_minimum_size = Vector2(70, 70)
+vertical_icon_alignment = 0
+script = ExtResource("1_vkr5y")
+stats = ExtResource("2_3jwps")
+
+[node name="BoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 70.0
+alignment = 1
+
+[node name="TextureBox" type="Control" parent="BoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="BoxContainer/TextureBox"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+mouse_filter = 2
+texture = ExtResource("1_fi0cy")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "Basic Tower"
+label_settings = SubResource("LabelSettings_v7ujn")
+horizontal_alignment = 1
+
+[node name="Price" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "60 BUCKS"
+label_settings = SubResource("LabelSettings_3x3nm")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

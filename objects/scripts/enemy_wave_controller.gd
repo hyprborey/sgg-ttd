@@ -19,11 +19,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#print("---")
-	#print("Wave timer", wave_timer.time_left)
-	#print("Spawn cooldown", spawn_cooldown.time_left)
+
 	if wave_num == len(waves):
-		print("No more waves!!!")
+		pass
 	elif enemies_left == 0:
 		wave_timer.start(waves[wave_num].time_before_wave)
 		enemies_left = waves[wave_num].enemy_amount

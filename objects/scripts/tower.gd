@@ -5,7 +5,7 @@ extends Node2D
 @onready var base_node = $Base
 @onready var gun_node = $Gun
 @onready var range = $RangeBox/Range
-@onready var bullets_node = get_tree().get_root().get_node("bullets")
+@onready var bullets_node = get_tree().get_root()
 @onready var attack_cooldown_timer = $"Attack Cooldown"
 @onready var bullet_spawnpoint = $Gun/BulletSpawnPoint
 
@@ -19,12 +19,9 @@ var all_targets = []
 var current_target
 
 func _ready() -> void:
-	if not bullets_node:
-		bullets_node = get_tree().get_root()
-	
 	attack_range = stats.attack_range
-	base_node.texture = stats.base_texture
-	gun_node.texture = stats.gun_texture
+	base_node.texture = stats.texture_base
+	gun_node.texture = stats.texture_gun
 	range.shape.radius = stats.attack_range
 
 func _process(delta: float) -> void:
