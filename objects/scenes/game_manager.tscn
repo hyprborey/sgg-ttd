@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfmr1nnmdm2hv"]
+[gd_scene load_steps=9 format=3 uid="uid://bfmr1nnmdm2hv"]
 
-[ext_resource type="Script" path="res://objects/scripts/game_manager.gd" id="1_lrjbb"]
+[ext_resource type="Script" uid="uid://cq6l0fyxqn1fq" path="res://objects/scripts/game_manager.gd" id="1_lrjbb"]
 [ext_resource type="Resource" uid="uid://dxkq8l548hgs6" path="res://resources/levels/debug_level.tres" id="2_rgexu"]
-[ext_resource type="PackedScene" uid="uid://vtfshpcj1iqc" path="res://objects/scenes/tower.tscn" id="3_knsrk"]
-[ext_resource type="Script" path="res://objects/scripts/world_manager.gd" id="3_slmu2"]
-[ext_resource type="Script" path="res://objects/scripts/game_ui.gd" id="6_1bf85"]
-[ext_resource type="Script" path="res://objects/scripts/enemy_wave_controller.gd" id="6_qpery"]
-[ext_resource type="PackedScene" uid="uid://cchduoh062nhv" path="res://objects/scenes/buildmenu_tower_button.tscn" id="7_72ge4"]
-[ext_resource type="Script" path="res://util/classes/tower_stats.gd" id="7_cq6ir"]
+[ext_resource type="Script" uid="uid://dyso2fcpaam02" path="res://objects/scripts/world_manager.gd" id="3_slmu2"]
+[ext_resource type="Script" uid="uid://dfu2smqcytcku" path="res://objects/scripts/game_ui.gd" id="6_1bf85"]
+[ext_resource type="Script" uid="uid://pv6cgfvk3xdd" path="res://objects/scripts/enemy_wave_controller.gd" id="6_qpery"]
+[ext_resource type="Script" uid="uid://ukihuub4i28c" path="res://util/classes/tower_stats.gd" id="7_cq6ir"]
 [ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="8_dljr2"]
 
 [sub_resource type="Curve2D" id="Curve2D_hktnm"]
@@ -16,23 +14,25 @@ _data = {
 }
 point_count = 6
 
-[node name="GameManager" type="Node2D"]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("world_manager", "wave_manager", "ui_manager")]
 script = ExtResource("1_lrjbb")
 stats = ExtResource("2_rgexu")
+world_manager = NodePath("WorldManager")
+wave_manager = NodePath("WaveManager")
+ui_manager = NodePath("CanvasLayer/UI")
 
-[node name="WorldManager" type="Node2D" parent="."]
+[node name="WorldManager" type="Node2D" parent="." node_paths=PackedStringArray("game_manager")]
 script = ExtResource("3_slmu2")
+game_manager = NodePath("..")
 
 [node name="Towers" type="Node2D" parent="WorldManager"]
-
-[node name="Tower" parent="WorldManager/Towers" instance=ExtResource("3_knsrk")]
-position = Vector2(354, 135)
 
 [node name="Line1" type="Path2D" parent="WorldManager"]
 curve = SubResource("Curve2D_hktnm")
 
-[node name="WaveManager" type="Node" parent="."]
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("game_manager")]
 script = ExtResource("6_qpery")
+game_manager = NodePath("..")
 
 [node name="WaveTimer" type="Timer" parent="WaveManager"]
 one_shot = true
@@ -42,7 +42,7 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="CanvasLayer"]
+[node name="UI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("buildmenu_button", "game_manager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,10 +50,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 script = ExtResource("6_1bf85")
 towers = Array[ExtResource("7_cq6ir")]([ExtResource("8_dljr2")])
+buildmenu_button = NodePath("BuildMenuButton")
+game_manager = NodePath("../..")
 
 [node name="BuildMenu" type="Control" parent="CanvasLayer/UI"]
+visible = false
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 1
 anchors_preset = 11
@@ -75,12 +79,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI/BuildMenu/PanelContainer"]
+[node name="TowerGridContainer" type="GridContainer" parent="CanvasLayer/UI/BuildMenu/PanelContainer"]
 layout_mode = 2
 columns = 4
-
-[node name="Button" parent="CanvasLayer/UI/BuildMenu/PanelContainer/GridContainer" instance=ExtResource("7_72ge4")]
-layout_mode = 2
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer/UI"]
 visible = false

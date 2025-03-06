@@ -7,7 +7,8 @@ var enemies_left = 0
 
 @onready var wave_timer: Timer = $WaveTimer
 @onready var spawn_cooldown: Timer = $SpawnCooldown
-@onready var game_manager = $".."
+
+@export var game_manager: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

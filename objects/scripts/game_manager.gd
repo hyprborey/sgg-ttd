@@ -3,40 +3,39 @@ extends Node2D
 @export var stats: LevelStats
 @export var world: PackedScene
 
-@onready var wave_manager = $WaveManager
-@onready var world_manager = $WorldManager
-@onready var ui_manager = $CanvasLayer/UI
+@export_category("Nodes")
+@export var world_manager: Node
+@export var wave_manager: Node
+@export var ui_manager: Node
 
 # Building
 @onready var ghost_tower_scene = preload("res://objects/scenes/ghost_tower.tscn")
 var is_currently_building: bool = false
-var ghost_tower_node: Node = null
+var tower_ghost: Node = null
 
 # Signals
 signal spawn_enemy(stats: EnemyStats, line: int)
 signal spawn_tower_ghost(stats: TowerStats)
+signal spawn_tower(stats: TowerStats, position: Vector2)
 
 func _ready() -> void:
 	self.spawn_tower_ghost.connect(enter_build_mode)
+	self.spawn_tower.connect(exit_build_mode)
 	
-	print(self)
-
-	
-	ui_manager.game_manager_node = self
-	
-	print(ui_manager.game_manager_node)
-
 func _process(delta: float) -> void:
 	pass
 
-
 func enter_build_mode(stats: TowerStats):
+	print("Entered the build mode")
 	if not is_currently_building:
-		var instance = ghost_tower_scene.instantiate()
-		add_child(instance)
+		tower_ghost = ghost_tower_scene.instantiate()
+		tower_ghost.stats = stats
+		tower_ghost.game_manager = self
+		add_child(tower_ghost)
 
 
-func exit_build_mode():
-	ghost_tower_node.queue_free()
-	ghost_tower_node = null
+func exit_build_mode(_stats: TowerStats, _position: Vector2):
+	print("Exist the build mode")
+	tower_ghost.queue_free()
+	tower_ghost = null
 	is_currently_building = false

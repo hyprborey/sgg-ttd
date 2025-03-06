@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cchduoh062nhv"]
 
 [ext_resource type="Texture2D" uid="uid://dstr6yerdnxe5" path="res://assets/tower_normal.png" id="1_fi0cy"]
-[ext_resource type="Script" path="res://objects/scripts/buildmenu_tower_button.gd" id="1_vkr5y"]
+[ext_resource type="Script" uid="uid://b26rggshkqho8" path="res://objects/scripts/buildmenu_tower_button.gd" id="1_vkr5y"]
 [ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="2_3jwps"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v7ujn"]

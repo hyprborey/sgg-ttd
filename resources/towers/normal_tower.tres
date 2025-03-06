@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dstr6yerdnxe5" path="res://assets/tower_normal.png" id="1_nodjn"]
 [ext_resource type="Resource" uid="uid://l0e7b7kni4hf" path="res://resources/towers/normal_tower_bullet.tres" id="2_1anlo"]
 [ext_resource type="Texture2D" uid="uid://lho815k11l28" path="res://assets/tower_normal_gun.png" id="3_rukgj"]
-[ext_resource type="Script" path="res://util/classes/tower_stats.gd" id="4_d0wxu"]
+[ext_resource type="Script" uid="uid://ukihuub4i28c" path="res://util/classes/tower_stats.gd" id="4_d0wxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncfut"]
 

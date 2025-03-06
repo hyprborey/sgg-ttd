@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://vtfshpcj1iqc"]
 
-[ext_resource type="Script" path="res://objects/scripts/tower.gd" id="1_m738e"]
+[ext_resource type="Script" uid="uid://dqoj8pb428gqp" path="res://objects/scripts/tower.gd" id="1_m738e"]
 [ext_resource type="Resource" uid="uid://xbefas6ehsyv" path="res://resources/towers/normal_tower.tres" id="2_8wab0"]
 [ext_resource type="Texture2D" uid="uid://k6q5i4qjpi7s" path="res://assets/tower_universal_base.png" id="3_v23uw"]
 [ext_resource type="Texture2D" uid="uid://cg6y4ilwu6qkp" path="res://assets/tower_universal_gun.png" id="4_0u8d7"]

@@ -6,7 +6,7 @@ extends Button
 @onready var label_name: Label = $BoxContainer/Name
 @onready var label_price: Label = $BoxContainer/Price
 
-var game_manager_node
+@export var game_manager: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	game_manager_node.spawn_tower_ghost.emit(stats)
+	game_manager.spawn_tower_ghost.emit(stats)

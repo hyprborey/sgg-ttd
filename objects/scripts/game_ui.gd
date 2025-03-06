@@ -1,21 +1,25 @@
 extends Control
 
-var game_manager_node: Node
+
+# TODO: Потом изменить чтобы у Game Manager был список башен
 @export var towers: Array[TowerStats]
 
-@onready var buildmenu_node = $BuildMenu
-@onready var buildmenu_button = $BuildMenuButton
+@export_category("Nodes")
+@onready var build_menu: Control = $BuildMenu
+@onready var tower_grid_container: GridContainer = $BuildMenu/PanelContainer/TowerGridContainer
+@export var buildmenu_button: Control
+@export var game_manager: Node
 
 const BUILDMENU_TOWER_BUTTON = preload("res://objects/scenes/buildmenu_tower_button.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(game_manager_node)
-	
+
 	for tower in towers:
 		var button = BUILDMENU_TOWER_BUTTON.instantiate()
-		button.game_manager_node = self.game_manager_node
-		button.stats = tower
+		button.game_manager = self.game_manager
+		tower_grid_container.add_child(button)
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,4 +28,4 @@ func _process(delta: float) -> void:
 
 
 func _on_build_menu_button_toggled(toggled_on: bool) -> void:
-	buildmenu_node.visible = toggled_on
+	build_menu.visible = !build_menu.visible
